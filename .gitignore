@@ -1,0 +1,14 @@
+# Entorno virtual
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Raw es efímero: solo se usa dentro de una misma ejecución del ETL
+raw/
+
+.DS_Store
+*.log

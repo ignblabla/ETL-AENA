@@ -1,0 +1,32 @@
+name: ETL vuelos de salida
+
+on:
+  schedule:
+    - cron: "*/12 * * * *"
+  workflow_dispatch:  # permite lanzarlo manualmente desde la pestaña Actions
+
+jobs:
+  run-etl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar el ETL (Extract -> Transform -> Load)
+        run: python main.py
+
+      - name: Commit y push de data/ si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --cached --quiet && echo "Sin cambios en data/, no se hace commit" || git commit -m "Actualizar datos ETL $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
