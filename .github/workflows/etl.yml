@@ -1,8 +1,8 @@
 name: ETL vuelos de salida
 
 on:
-  schedule:
-    - cron: "*/17 * * * *"
+  repository_dispatch:
+    types: [scheduled-etl] 
   workflow_dispatch:
   push:
     branches:
