@@ -2,7 +2,7 @@ name: ETL vuelos de salida
 
 on:
   schedule:
-    - cron: "*/12 * * * *"
+    - cron: "*/17 * * * *"
   workflow_dispatch:
   push:
     branches:
