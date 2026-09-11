@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/12 * * * *"
   workflow_dispatch:  # permite lanzarlo manualmente desde la pestaña Actions
+  push:
+    branches:
+      - main  # Cambia a 'master' si ese es el nombre de tu rama principal
+    paths-ignore:
+      - "data/**"  # Evita que el commit automático del bot dispare un bucle infinito
 
 jobs:
   run-etl:
