@@ -3,18 +3,23 @@ name: ETL vuelos de salida
 on:
   schedule:
     - cron: "*/12 * * * *"
-  workflow_dispatch:  # permite lanzarlo manualmente desde la pestaña Actions
+  workflow_dispatch:
   push:
     branches:
-      - main  # Cambia a 'master' si ese es el nombre de tu rama principal
+      - main
     paths-ignore:
-      - "data/**"  # Evita que el commit automático del bot dispare un bucle infinito
+      - "data/**"
+
+concurrency:
+  group: etl-aena
+  cancel-in-progress: true 
 
 jobs:
   run-etl:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
-      contents: write  # Permite al workflow hacer commits y push al repositorio
+      contents: write
 
     steps:
       - name: Checkout del repositorio

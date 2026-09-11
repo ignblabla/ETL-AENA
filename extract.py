@@ -38,7 +38,6 @@ BASE_URL = "https://www.aena.es/sites/Satellite"
 FLIGHT_TYPE = "S"  # S = Salidas
 DOS_DIAS = "si"
 
-# Los 11 grandes aeropuertos de España, por código IATA.
 AEROPUERTOS = {
     "MAD": "Madrid-Barajas",
     "AGP": "Malaga-Costa del Sol",
@@ -56,10 +55,10 @@ AEROPUERTOS = {
 RAW_DIR = Path("raw")
 RAW_DIR.mkdir(exist_ok=True)
 
-MAX_REINTENTOS = 3
-TIMEOUT_SEGUNDOS = 15
-ESPERA_ENTRE_REINTENTOS = 5
-ESPERA_ENTRE_AEROPUERTOS = 2  # pausa entre peticiones a distintos aeropuertos
+MAX_REINTENTOS = 2
+TIMEOUT_SEGUNDOS = 8
+ESPERA_ENTRE_REINTENTOS = 2
+ESPERA_ENTRE_AEROPUERTOS = 1
 
 HEADERS = {
     "accept": "*/*",
